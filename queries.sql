@@ -39,4 +39,3 @@ SELECT o.id AS OrderID,
 FROM [Order] AS o
 JOIN OrderDetail AS i ON (i.OrderId= o.Id)
 GROUP BY i.OrderId;
-
