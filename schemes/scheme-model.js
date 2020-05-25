@@ -51,4 +51,19 @@ async function remove(id) {
       return null;
     });
 }
-module.exports = { find, findById, findSteps, add, update, remove };
+
+async function addStep(step, scheme_id) {
+  const steps = await findSteps(scheme_id);
+  const maxStepNumber = steps.reduce(
+    (ac, val) => (val.step_number > ac ? val.step_number : ac),
+    0
+  );
+  return db("steps")
+    .insert({
+      ...step,
+      scheme_id,
+      step_number: maxStepNumber + 1,
+    })
+    .then(([id]) => db("steps").where({ id }).first());
+}
+module.exports = { find, findById, findSteps, add, update, remove, addStep };
