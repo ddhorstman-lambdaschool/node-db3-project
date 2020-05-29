@@ -21,7 +21,7 @@ WHERE o.OrderDate < '2012-08-09';
 -- Display the OrderID, Customer's Company Name and the employee's LAStName for every order. All columns should be labeled clearly. Displays 16,789 records.
 Select o.id AS OrderId,
        c.CompanyName,
-       e.LAStName AS EmployeeLAStName
+       e.LastName AS EmployeeLastName
 FROM [Order] AS o
 JOIN Customer AS c ON c.Id = o.CustomerId
 Join Employee AS e ON o.EmployeeId = e.Id;
