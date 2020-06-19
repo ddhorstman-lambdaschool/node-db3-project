@@ -1,8 +1,6 @@
-const express = require('express');
-
 const Schemes = require('./scheme-model.js');
 
-const router = express.Router();
+const router = require('express').Router();
 
 router.get('/', (req, res) => {
   Schemes.find()
@@ -54,6 +52,7 @@ router.post('/', (req, res) => {
     res.status(201).json(scheme);
   })
   .catch (err => {
+    console.error(err)
     res.status(500).json({ message: 'Failed to create new scheme' });
   });
 });
